@@ -1,0 +1,21 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title= content_for(:title) || "Omeglesh"
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}/
+    %meta{:content => "yes", :name => "mobile-web-app-capable"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = yield :head
+    %link{:href => asset_path("icon.png"), :rel => "icon", :type => "image/x-icon"}/
+    %script{:src => "https://cdn.tailwindcss.com"}
+    %link{:href => "https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css", :rel => "stylesheet"}/
+    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css", :rel => "stylesheet"}/
+    = stylesheet_link_tag :app, "data-turbo-track": "reload"
+    = javascript_importmap_tags
+  %body.max-w-screen-md
+    = yield
+    = render 'layouts/shared/notification'
+    %script{:src => "https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"}

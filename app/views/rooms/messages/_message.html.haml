@@ -1,0 +1,18 @@
+= turbo_frame_tag "messages_#{message.id}" do
+  - if message.user.id == current_user&.id
+    .col-start-6.col-end-13.p-3.rounded-lg
+      .flex.items-center.justify-start.flex-row-reverse
+        .flex.items-center.justify-center.h-10.w-10.rounded-full.bg-indigo-500.flex-shrink-0
+          = current_user.initials
+        .relative.mr-3.text-sm.bg-indigo-100.py-2.px-4.shadow.rounded-xl
+          %div= message.content
+          = render_attachments(message)
+  - else
+    .col-start-1.col-end-8.p-3.rounded-lg
+      .flex.flex-row.items-center
+        .flex.items-center.justify-center.h-10.w-10.rounded-full.bg-gray-500.flex-shrink-0
+          = message.user.initials
+        .relative.ml-3.text-sm.bg-gray-100.py-2.px-4.shadow.rounded-xl
+          .text-1xl.font-extrabold.text-gray-900.dark:text-black= message.user.name
+          %div= message.content
+          = render_attachments(message)

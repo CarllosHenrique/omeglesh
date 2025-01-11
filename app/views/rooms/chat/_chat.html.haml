@@ -1,0 +1,14 @@
+.flex.flex-col.flex-auto.h-full.p-6{:class => "w-[1256px]"}
+  .flex.flex-col.flex-auto.flex-shrink-0.rounded-2xl.bg-gray-100.h-full.p-4{:style => "background: url('#{@room.image_background if @room.image_background.present?}')"}
+    .flex.flex-col.h-full.overflow-x-auto.mb-4
+      .flex.flex-col.h-full
+        .grid.gap-y-2{"data-controller" => "messages"}
+          = turbo_stream_from @room
+          #notifications
+          = turbo_stream_from "messages"
+          #messages
+            - @messages&.each do |message|
+              = render partial: "rooms/messages/message", locals: { message: message, room: @room }
+    = form_with(model: [@room, @message], local: false, remote: true,                                                |
+      data: { controller: "messages file-preview", action: "submit->file-preview#hidePreviewAfterSubmit"}) do |form| |
+      = render "rooms/messages/form", form: form
