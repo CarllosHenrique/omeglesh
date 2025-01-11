@@ -34,7 +34,7 @@ gem "kamal", require: false
 
 gem "haml-rails", "~> 2.0"
 
-gem 'html2haml'
+gem "html2haml"
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", require: false
@@ -64,6 +64,8 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "dockerfile-rails", ">= 1.7", :group => :development
+gem "dockerfile-rails", ">= 1.7", group: :development
 
 gem "redis", "~> 5.3"
+
+gem "pundit", "~> 2.4"

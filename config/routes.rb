@@ -15,5 +15,4 @@ Rails.application.routes.draw do
       delete :leave
     end
   end
-
 end

@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Pundit::Authorization
+
   allow_browser versions: :modern
 
   helper_method :current_user

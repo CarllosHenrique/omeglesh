@@ -1,20 +1,54 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_room, only: [ :show, :destroy, :edit, :update, :generate_hash,
-                                   :destroy_hash, :check, :join, :confirm, :leave ]
+                                  :destroy_hash, :check, :join, :confirm, :leave ]
 
   def index
     @rooms = Room.all.limit(5)
+
+    authorize @rooms
   end
 
   def show
-    if @room.visibility == true && @room.hash_code.present? && @room.user.id != current_user.id
-      if session[:checked_room_user] != @room.id
-        redirect_to check_room_path(@room) and return
-      end
-    end
-
+    authorize @room
+    user_session_is_present?
     set_message
+  rescue Pundit::NotAuthorizedError
+    redirect_to check_room_path(@room)
+  end
+
+  def new
+    @room = Room.new
+  end
+
+  def create
+    @room = current_user.rooms.build(room_params)
+
+    if @room.save
+      create_room_user_session
+      redirect_to @room, notice: "Room created successfully"
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    authorize @room
+  end
+
+  def destroy
+    authorize @room
+    @room.destroy
+    redirect_to rooms_path, notice: "Room deleted successfully"
+  end
+
+  def update
+    authorize @room
+    if @room.update(room_params)
+      redirect_to @room, notice: "Room updated successfully"
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def check; end
@@ -37,53 +71,31 @@ class RoomsController < ApplicationController
       create_room_user_session
       redirect_to room_path(@room), notice: "You have joined the room successfully"
     else
-      redirect_to check_room_path(@room), alert: "Invalid hash code"
-    end
-  end
-
-  def new
-    @room = Room.new
-  end
-
-  def create
-    @room = current_user.rooms.build(room_params)
-
-    if @room.save
-      create_room_user_session
-      redirect_to @room, notice: "Room created successfully"
-    else
-      render :new, status: :unprocessable_entity
-    end
-  end
-
-  def edit; end
-
-  def destroy
-    @room.destroy
-    redirect_to rooms_path, notice: "Room deleted successfully"
-  end
-
-  def update
-    if @room.update(room_params)
-      redirect_to @room, notice: "Room updated successfully"
-    else
-      render :new, status: :unprocessable_entity
+      redirect_to check_room_path(@room), alert: "Invalid room code"
     end
   end
 
   def generate_hash
+    authorize @room
     @room.generate_hash_code
     @room.save
     redirect_to edit_room_path(@room), notice: "Hash generated successfully"
   end
 
   def destroy_hash
+    authorize @room
     @room.destroy_hash_code
     @room.save
     redirect_to edit_room_path(@room), notice: "Hash destroyed successfully"
   end
 
   private
+
+  def user_session_is_present?
+    unless session[:checked_room_user] == @room.id && @room.users.include?(current_user)
+      redirect_to confirm_room_path(@room)
+    end
+  end
 
   def create_room_user_session
     session[:checked_room_user] = @room.id
@@ -100,6 +112,7 @@ class RoomsController < ApplicationController
   end
 
   def room_params
-    params.require(:room).permit(:name, :visibility, :user_id, :hash_code, :logo, :max_users, :password, :image_background)
+    params.require(:room).permit(:name, :visibility, :user_id, :hash_code, :logo,
+                                 :max_users, :password, :image_background)
   end
 end
