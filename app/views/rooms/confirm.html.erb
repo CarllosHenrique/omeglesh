@@ -1,0 +1,35 @@
+<div class="w-screen h-screen flex-col flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+  <section class="bg-gray-50 dark:bg-gray-900">
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+          <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            Entrar na sala [ <%= @room&.name %> ]
+          </h1>
+
+          <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+              <tbody>
+              <% @room&.users&.each do |user| %>
+                <tr class="border-b border-gray-200 dark:border-gray-700">
+                  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                    <%= user&.name %>
+                  </th>
+                  <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                    <div class="flex items-center justify-center ml-auto text-xs text-white bg-green-500
+          h-4 w-4 rounded leading-none"></div>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+
+          <%= form_with url: join_room_path(@room), html: { class: "max-w-sm mx-auto" } do |f| %>
+            <%= f.submit "Submit", class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

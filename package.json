@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@rails/actioncable": "^8.0.100",
+    "controllers": "^0.0.2"
+  },
+  "packageManager": "yarn@1.22.22"
+}
