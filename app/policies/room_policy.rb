@@ -12,7 +12,7 @@ class RoomPolicy < ApplicationPolicy
 
   def show?
     if record.visibility == true && record.hash_code.present?
-      if room_belongs_to_user
+      unless room_belongs_to_user
         return false
       end
     end

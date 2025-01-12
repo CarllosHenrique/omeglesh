@@ -5,11 +5,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.username = "#{user_params[:name]}-#{SecureRandom.hex(4)}"
 
     if @user.save
       session[:current_user_id] = @user.id
-      redirect_to rooms_path, notice: "Signed up!"
+      redirect_to rooms_path, notice: t("controller.users.create.success")
     else
       render :new, status: :unprocessable_entity
     end

@@ -1,2 +1,69 @@
 pt-BR:
-  hello: "Olá mundo"
+  controller:
+    rooms:
+      create:
+        success: "Sala %{room} criada com sucesso!"
+      destroy:
+        success: "Sala %{room} destruída com sucesso!"
+      update:
+        success: "Sala %{room} atualizada com sucesso!"
+      leave:
+        success: "Você saiu da sala %{room} com sucesso!"
+      confirm:
+        success: "Você confirmou a sala %{room} com sucesso!"
+      join:
+        error: "Erro ao entrar na sala! O código da sala é inválido."
+        success: "Você entrou na sala %{room} com sucesso!"
+      generate_hash:
+        success: "Hash gerado com sucesso!"
+      destroy_hash:
+        success: "Hash destruído com sucesso!"
+    users:
+      create:
+        success: "Entrou com sucesso!"
+  rooms:
+    chat:
+      sidebar:
+        active_users: "Usuários ativos"
+        edit: "Configurações"
+        leave: "Sair da sala"
+    messages:
+      form:
+        placeholder:
+          write_message: "Escreva sua mensagem!"
+    shared:
+      form:
+        generate_hash_code: "Gerar código da sala"
+        room_background_placeholder: "URL da imagem de fundo da sala"
+        room_background: "Imagem de fundo da sala"
+        max_users: "Máximo de usuários permitidos"
+        edit_submit: "Atualizar modificação"
+        search_placeholder: "Pesquisar por salas"
+        new_submit: "Criar sala"
+    check:
+      title: "Verificação do código da sala"
+      code_verification: "Verificar o código."
+    confirm:
+      title: "Entrar na sala [%{room}]"
+      join: "Entrar"
+    edit:
+      title: "Editar configurações da sala [%{room}]"
+    index:
+      create_room: "Criar uma sala de bate-papo"
+      name: "Nome"
+      author: "Criador"
+      users: "Usuários"
+      created_at: "Criado em"
+      visibility: "Visibilidade"
+      actions: "Ações"
+    new:
+      title: "Criar uma nova sala de bate-papo"
+      room_name: "Nome da sala"
+      title_room_placeholder: "Digite o nome da sala"
+  application:
+    back: "Voltar"
+    title: "Omeglesh"
+  users:
+    new:
+      submit_join: "Entrar"
+      name: "Digite seu username"

@@ -2,34 +2,34 @@
   .relative.overflow-x-auto.shadow-md.sm:rounded-lg
     .flex.flex-column.sm:flex-row.flex-wrap.space-y-4.sm:space-y-0.items-center.justify-between.pb-4
       %div
-        = link_to "Criar uma sala de conversa", new_room_path, class: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br |
-          focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg                                |
-          dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"                                                               |
-      %label.sr-only{:for => "table-search"} Search
-      .relative
-        .absolute.inset-y-0.left-0.rtl:inset-r-0.rtl:right-0.flex.items-center.ps-3.pointer-events-none
-          %svg.w-5.h-5.text-gray-500.dark:text-gray-400{"aria-hidden" => "true", :fill => "currentColor", :viewbox => "0 0 20 20", :xmlns => "http://www.w3.org/2000/svg"}
-            %path{"clip-rule" => "evenodd", :d => "M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z", "fill-rule" => "evenodd"}
-        %input#table-search.block.p-2.ps-10.text-sm.text-gray-900.border.border-gray-300.rounded-lg.w-80.bg-gray-50.focus:ring-blue-500.focus:border-blue-500.dark:bg-gray-700.dark:border-gray-600.dark:placeholder-gray-400.dark:text-white.dark:focus:ring-blue-500.dark:focus:border-blue-500{:placeholder => "Search for items", :type => "text"}/
+        = link_to new_room_path, class: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" do
+          %i.fa-solid.fa-plus
+          = t("rooms.index.create_room")
+      = render "rooms/shared/search", path: rooms_path
     %table.w-full.text-sm.text-left.rtl:text-right.text-gray-500.dark:text-gray-400
       %thead.text-xs.text-gray-700.uppercase.bg-gray-50.dark:bg-gray-700.dark:text-gray-400
         %tr
           %th.p-4{:scope => "col"}
             .flex.items-center
               %input#checkbox-all-search.w-4.h-4.text-blue-600.bg-gray-100.border-gray-300.rounded.focus:ring-blue-500.dark:focus:ring-blue-600.dark:ring-offset-gray-800.dark:focus:ring-offset-gray-800.focus:ring-2.dark:bg-gray-700.dark:border-gray-600{:type => "checkbox"}/
-              %label.sr-only{:for => "checkbox-all-search"} checkbox
           %th.px-6.py-3{:scope => "col"}
-            Room
+            %i.fa-solid.fa-door-open
+            = t("rooms.index.name")
           %th.px-6.py-3{:scope => "col"}
-            Creator
+            %i.fa-solid.fa-user
+            = t("rooms.index.author")
           %th.px-6.py-3{:scope => "col"}
-            Users
+            %i.fa-solid.fa-users
+            = t("rooms.index.users")
           %th.px-6.py-3{:scope => "col"}
-            Created at
+            %i.fa-solid.fa-clock
+            = t("rooms.index.created_at")
           %th.px-6.py-3{:scope => "col"}
-            Status
+            %i.fa-solid.fa-eye
+            = t("rooms.index.visibility")
           %th.px-6.py-3{:scope => "col"}
-            Action
+            %i.fa-solid.fa-bars
+            = t("rooms.index.actions")
       %tbody
         - if @rooms.any?
           - @rooms&.each do |room|
@@ -49,19 +49,14 @@
                 = time_ago_in_words(room.created_at)
               %td.px-6.py-4
                 - if room.visibility == false
-                  %svg.w-6.h-6.text-gray-800.dark:text-white{"aria-hidden" => "true", :fill => "currentColor", :height => "24", :viewbox => "0 0 24 24", :width => "24", :xmlns => "http://www.w3.org/2000/svg"}
-                    %path{"clip-rule" => "evenodd", :d => "M15 7a2 2 0 1 1 4 0v4a1 1 0 1 0 2 0V7a4 4 0 0 0-8 0v3H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2V7Zm-5 6a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1Z", "fill-rule" => "evenodd"}
+                  %i.fa-solid.fa-lock-open
                 - else
-                  %svg.w-6.h-6.text-gray-800.dark:text-white{"aria-hidden" => "true", :fill => "currentColor", :height => "24", :viewbox => "0 0 24 24", :width => "24", :xmlns => "http://www.w3.org/2000/svg"}
-                    %path{"clip-rule" => "evenodd", :d => "M8 10V7a4 4 0 1 1 8 0v3h1a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1Zm2-3a2 2 0 1 1 4 0v3h-4V7Zm2 6a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1Z", "fill-rule" => "evenodd"}
+                  %i.fa-solid.fa-lock
               %td.px-6.py-4
-                = link_to confirm_room_path(room), class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center |
-                  inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" do                                                                                       |
+                = link_to confirm_room_path(room), class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" do                                                                                       |
                   %i.fa-solid.fa-arrow-right
                 - if room.user&.id == current_user&.id
-                  = link_to room_path(room), data: { turbo_method: :delete }, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center |
-                    inline-flex items-center me-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-blue-800" do                                                                                                                  |
+                  = link_to room_path(room), data: { turbo_method: :delete }, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-blue-800" do                                                                                                                  |
                     %i.fa-solid.fa-trash
-                  = link_to edit_room_path(room), class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center |
-                    inline-flex items-center me-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800" do                                                                                  |
+                  = link_to edit_room_path(room), class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800" do                                                                                  |
                     %i.fa-solid.fa-pen-to-square

@@ -1,11 +1,8 @@
 class Rooms::MessagesController < ApplicationController
   before_action :set_room
   before_action :authenticate_user!
-
-  # rooms/messages_controller.rb
   def create
     @message = @room.messages.new(message_params)
-    @message.user = current_user
     if @message.save
       respond_to do |format|
         format.turbo_stream
@@ -14,7 +11,6 @@ class Rooms::MessagesController < ApplicationController
     end
   end
 
-
   private
 
   def set_room
@@ -22,6 +18,6 @@ class Rooms::MessagesController < ApplicationController
   end
 
   def message_params
-    params.require(:message).permit(:content, assets: [])
+    params.require(:message).permit(:content, assets: []).merge(user: current_user)
   end
 end

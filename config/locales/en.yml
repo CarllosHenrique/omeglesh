@@ -1,2 +1,69 @@
 en:
-  hello: "Hello world"
+  controller:
+    rooms:
+      create:
+        success: "Room %{room} created successfully!"
+      destroy:
+        success: "Room %{room} destroyed successfully!"
+      update:
+        success: "Room %{room} updated successfully!"
+      leave:
+        success: "You left the room %{room} successfully!"
+      confirm:
+        success: "You confirmed the room %{room} successfully!"
+      join:
+        error: "Error joining the room! Room code is invalid."
+        success: "You joined the room %{room} successfully!"
+      generate_hash:
+        success: "Hash generated successfully!"
+      destroy_hash:
+        success: "Hash destroyed successfully!"
+    users:
+      create:
+        success: "Logged in successfully!"
+  rooms:
+    chat:
+      sidebar:
+        active_users: "Active users"
+        edit: "Configurations"
+        leave: "Sign out of the room"
+    messages:
+      form:
+        placeholder:
+          write_message: "Write your message!"
+    shared:
+      form:
+        generate_hash_code: "Generate room code"
+        room_background_placeholder: "Room background image URL"
+        room_background: "Room background image"
+        max_users: "Maximum allowed users"
+        edit_submit: "Update modifications"
+        search_placeholder: "Search for rooms"
+        new_submit: "Create room"
+    check:
+      title: "Room code verification"
+      code_verification: "Verify the code."
+    confirm:
+      title: "Join in the room [%{room}]"
+      join: "Join"
+    edit:
+      title: "Edit room settings [%{room}]"
+    index:
+      create_room: "Create a chat room"
+      name: "Name"
+      author: "Creator"
+      users: "Users"
+      created_at: "Created at"
+      visibility: "Visibility"
+      actions: "Actions"
+    new:
+      title: "Create a new chat room"
+      room_name: "Room name"
+      title_room_placeholder: "Write the title of the room"
+  application:
+    back: "Back"
+    title: "Omeglesh"
+  users:
+    new:
+      submit_join: "Join"
+      name: "Enter your username"

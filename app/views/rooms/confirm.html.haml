@@ -4,7 +4,7 @@
       .w-full.bg-white.rounded-lg.shadow.dark:border.md:mt-0.sm:max-w-md.xl:p-0.dark:bg-gray-800.dark:border-gray-700
         .p-6.space-y-4.md:space-y-6.sm:p-8
           %h1.text-xl.font-bold.leading-tight.tracking-tight.text-gray-900.md:text-2xl.dark:text-white
-            Entrar na sala [ #{@room&.name} ]
+            = t("rooms.confirm.title", room: @room&.name)
           .relative.overflow-x-auto.shadow-md.sm:rounded-lg
             %table.w-full.text-sm.text-left.rtl:text-right.text-gray-500.dark:text-gray-400
               %tbody
@@ -15,4 +15,4 @@
                     %td.px-6.py-4.bg-gray-50.dark:bg-gray-800
                       .flex.items-center.justify-center.ml-auto.text-xs.text-white.bg-green-500.h-4.w-4.rounded.leading-none
           = form_with url: join_room_path(@room), html: { class: "max-w-sm mx-auto" } do |f|
-            = f.submit "Submit", class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            = f.submit t("rooms.confirm.join"), class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

@@ -7,7 +7,6 @@ class Room < ApplicationRecord
 
   before_validation :set_max_users, on: :create
 
-
   MAX_USERS = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 
   validates :name, presence: true, length: { minimum: 3, maximum: 20 }
@@ -15,6 +14,7 @@ class Room < ApplicationRecord
   validates :user_id, presence: true
   validates :logo, presence: true, format: URI::DEFAULT_PARSER.make_regexp(%w[http https])
 
+  scope :search, ->(query) { where("LOWER(name) LIKE ?", "%#{query}%") }
 
   def generate_hash_code
     self.hash_code = SecureRandom.hex(5)
