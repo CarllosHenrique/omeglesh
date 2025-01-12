@@ -16,6 +16,18 @@ module Omeglesh
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
+    config.rails_i18n.enabled_modules = [:pluralization]
+    config.rails_i18n.enabled_modules = [:pluralization, :ordinals]
+
+    # Where the I18n library should search for translation files
+    I18n.load_path += Dir[Rails.root.join("lib", "locales", "*.{rb,yml}")]
+
+    # Permitted locales available for the application
+    I18n.available_locales = [:en, "pt-BR"]
+
+    # Set default locale to something other than :en
+    I18n.default_locale = :en
+
 
 
     # Configuration for the application, engines, and railties goes here.

@@ -37,7 +37,7 @@ class ApplicationPolicy
   end
 
   def user_logged_in?
-    user.present? || root_path
+    user.present?
   end
 
   def redirect_to_new_session

@@ -58,6 +58,7 @@
     <orderEntry type="library" scope="PROVIDED" name="debug (v1.10.0, asdf: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dockerfile-rails (v1.7.0, asdf: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dotenv (v3.1.7, asdf: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="dotenv-rails (v3.1.7, asdf: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="drb (v2.2.1, asdf: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ed25519 (v1.3.0, asdf: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubi (v1.13.1, asdf: 3.3.1) [gem]" level="application" />
@@ -113,6 +114,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rails (v8.0.1, asdf: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails-dom-testing (v2.2.0, asdf: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails-html-sanitizer (v1.6.2, asdf: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rails-i18n (v8.0.1, asdf: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="railties (v8.0.1, asdf: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rainbow (v3.1.1, asdf: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rake (v13.2.1, asdf: 3.3.1) [gem]" level="application" />
@@ -174,8 +176,13 @@
         <option value="benchmark" />
         <option value="channel" />
         <option value="controller" />
+        <option value="dockerfile" />
         <option value="erb:authentication" />
+        <option value="erb:controller" />
+        <option value="erb:mailer" />
+        <option value="erb:scaffold" />
         <option value="generator" />
+        <option value="haml:application_layout" />
         <option value="helper" />
         <option value="integration_test" />
         <option value="jbuilder" />
@@ -184,7 +191,10 @@
         <option value="mailer" />
         <option value="migration" />
         <option value="model" />
+        <option value="pundit:install" />
+        <option value="pundit:policy" />
         <option value="resource" />
+        <option value="rspec:policy" />
         <option value="scaffold" />
         <option value="scaffold_controller" />
         <option value="script" />
@@ -201,6 +211,7 @@
         <option value="test_unit:install" />
         <option value="test_unit:mailbox" />
         <option value="test_unit:plugin" />
+        <option value="test_unit:policy" />
       </list>
     </option>
     <option name="myGenerators">
@@ -212,8 +223,13 @@
         <option value="benchmark" />
         <option value="channel" />
         <option value="controller" />
+        <option value="dockerfile" />
         <option value="erb:authentication" />
+        <option value="erb:controller" />
+        <option value="erb:mailer" />
+        <option value="erb:scaffold" />
         <option value="generator" />
+        <option value="haml:application_layout" />
         <option value="helper" />
         <option value="integration_test" />
         <option value="jbuilder" />
@@ -222,7 +238,10 @@
         <option value="mailer" />
         <option value="migration" />
         <option value="model" />
+        <option value="pundit:install" />
+        <option value="pundit:policy" />
         <option value="resource" />
+        <option value="rspec:policy" />
         <option value="scaffold" />
         <option value="scaffold_controller" />
         <option value="script" />
@@ -239,6 +258,7 @@
         <option value="test_unit:install" />
         <option value="test_unit:mailbox" />
         <option value="test_unit:plugin" />
+        <option value="test_unit:policy" />
       </list>
     </option>
   </component>
@@ -515,6 +535,11 @@
                 </subtasks>
               </RakeTaskImpl>
               <RakeTaskImpl description="" fullCommand="db:truncate_all" id="truncate_all" />
+            </subtasks>
+          </RakeTaskImpl>
+          <RakeTaskImpl id="haml">
+            <subtasks>
+              <RakeTaskImpl description="Convert html.erb to html.haml each file in app/views" fullCommand="haml:erb2haml" id="erb2haml" />
             </subtasks>
           </RakeTaskImpl>
           <RakeTaskImpl id="importmap">

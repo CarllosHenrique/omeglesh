@@ -36,6 +36,11 @@ gem "haml-rails", "~> 2.0"
 
 gem "html2haml"
 
+gem "rails-i18n", "~> 8.0"
+gem "dotenv-rails"
+
+
+
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", require: false
 

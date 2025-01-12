@@ -1,5 +1,5 @@
 !!!
-%html{:lang => "en"}
+%html{:lang => "#{current_user&.locale || 'en'}"}
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title= content_for(:title) || "Omeglesh"
