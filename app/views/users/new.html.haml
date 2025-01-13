@@ -2,11 +2,11 @@
   .w-full.max-w-sm.p-4.bg-white.border.border-gray-200.rounded-lg.shadow.sm:p-6.md:p-8.dark:bg-gray-800.dark:border-gray-700
     = form_with url: users_path, model: @user, class: "space-y-6", method: :post do |f|
       %div.flex.items-center.space-x-2.text-center.justify-center
-        %img{:alt => "", :src => asset_path("icon.png"), class: "w-6 h-6", style:"width: 51px;height: 45px;"}
+        %img{:alt => "", :src => asset_path("icon.png"), class: "w-6 h-6 sm:w-10 sm:h-10", style: "max-width: 100%;"}
         %h1.text-xl.font-medium.text-gray-900.dark:text-white.font-bold{:style => "font-size: 45px;"}
           = t("application.title")
       %div
         = f.label :name, t("users.new.name"), class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-        = f.text_field :name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: t("users.new.name"), required: true
+        = f.text_field :name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 sm:p-3 md:p-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: t("users.new.name"), required: true
         %br
-        = f.submit t("users.new.submit_join"), class: "w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        = f.submit t("users.new.submit_join"), class: "w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 sm:text-base md:text-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
