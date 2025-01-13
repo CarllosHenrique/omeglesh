@@ -8,8 +8,8 @@ class RoomUser < ApplicationRecord
   private
 
   def update_user_count
-    broadcast_replace_to(
-      "user_count",
+    Turbo::StreamsChannel.broadcast_replace_to(
+      room,
       target: "user_count",
       partial: "rooms/chat/user_count",
       locals: { room: room }
@@ -17,8 +17,8 @@ class RoomUser < ApplicationRecord
   end
 
   def create_user_broadcast
-    broadcast_append_to(
-      "users",
+    Turbo::StreamsChannel..broadcast_append_to(
+      room,
       target: "users",
       partial: "rooms/chat/user",
       locals: { user: user }
@@ -26,8 +26,8 @@ class RoomUser < ApplicationRecord
   end
 
   def remove_user_broadcast
-    broadcast_remove_to(
-      "users",
+    Turbo::StreamsChannel.broadcast_remove_to(
+      room,
       target: "users_#{user.id}",
       partial: "rooms/chat/user",
       locals: { user: user }

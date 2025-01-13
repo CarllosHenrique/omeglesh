@@ -8,7 +8,7 @@
           = turbo_stream_from "messages"
           #messages
             - @messages&.each do |message|
-              = render partial: "rooms/messages/message", locals: { message: message, room: @room }
+              = render partial: "rooms/messages/message", locals: { message: message }
     = form_with(model: [@room, @message], local: false, remote: true,                                                |
       data: { controller: "messages file-preview", action: "submit->file-preview#hidePreviewAfterSubmit"}) do |form| |
       = render "rooms/messages/form", form: form

@@ -1,4 +1,4 @@
-= turbo_frame_tag "messages_#{message.id}" do
+= turbo_frame_tag "room_#{message.room&.id}_message_#{message&.id}" do
   - if message.user.id == current_user&.id
     .col-start-6.col-end-13.p-3.rounded-lg
       .flex.items-center.justify-start.flex-row-reverse

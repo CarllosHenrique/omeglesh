@@ -5,7 +5,7 @@ class Rooms::MessagesController < ApplicationController
     @message = @room.messages.new(message_params)
     if @message.save
       respond_to do |format|
-        format.turbo_stream
+        format.turbo_stream { render turbo_stream: turbo_stream.append("messages", @message) }
         format.html { redirect_to room_path(@room) }
       end
     end

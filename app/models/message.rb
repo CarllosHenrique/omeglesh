@@ -3,15 +3,15 @@ class Message < ApplicationRecord
   belongs_to :room
   has_many_attached :assets
 
-  after_create_commit { create_broadcast }
+  after_create_commit { create_message_broadcast }
 
   validates :content, presence: true
 
   private
 
-  def create_broadcast
+  def create_message_broadcast
     broadcast_append_to "messages",
-                        target: "messages",
+                        target: "room_#{self.room.id}_messages#{self.id}",
                         partial: "rooms/messages/message",
                         locals: { message: self }
   end
