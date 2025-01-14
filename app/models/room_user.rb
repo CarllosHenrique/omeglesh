@@ -17,7 +17,7 @@ class RoomUser < ApplicationRecord
   end
 
   def create_user_broadcast
-    Turbo::StreamsChannel..broadcast_append_to(
+    Turbo::StreamsChannel.broadcast_append_to(
       room,
       target: "users",
       partial: "rooms/chat/user",
