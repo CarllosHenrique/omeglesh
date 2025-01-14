@@ -11,7 +11,7 @@ class Message < ApplicationRecord
 
   def create_message_broadcast
     broadcast_append_to "messages",
-                        target: "room_#{self.room.id}_messages#{self.id}",
+                        target: "message_#{self.id}",
                         partial: "rooms/messages/message",
                         locals: { message: self }
   end

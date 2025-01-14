@@ -1,4 +1,4 @@
-= turbo_frame_tag "users_#{user&.id}" do
+= turbo_frame_tag(dom_id(user)) do
   %button.flex.flex-row.items-center.hover:bg-gray-100.rounded-xl.p-2
     .flex.items-center.justify-center.h-8.w-8.bg-gray-200.rounded-full
       = user&.initials

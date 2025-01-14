@@ -28,7 +28,7 @@ class RoomUser < ApplicationRecord
   def remove_user_broadcast
     Turbo::StreamsChannel.broadcast_remove_to(
       room,
-      target: "users_#{user.id}",
+      target: "user_#{user.id}",
       partial: "rooms/chat/user",
       locals: { user: user }
     )
