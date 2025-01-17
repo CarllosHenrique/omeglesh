@@ -1,0 +1,49 @@
+.pagy.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 34px;
+}
+
+.pagy.nav a {
+  display: inline-block;
+  padding: 6px 12px; /* Espaçamento interno */
+  text-decoration: none; /* Remove o sublinhado */
+  font-size: 15px; /* Tamanho do texto */
+  color: #8080806b; /* Cor do texto */
+  border: 1px solid transparent; /* Borda invisível */
+  border-radius: 4px; /* Bordas arredondadas */
+  transition: all 0.3s ease; /* Suaviza as transições */
+}
+
+.pagy.nav a:hover {
+  color: #fff; /* Texto branco */
+  border-color: #8080806b; /* Borda azul */
+}
+
+.pagy.nav a.current {
+  color: #fff; /* Texto branco */
+  cursor: default; /* Cursor padrão para a página atual */
+  pointer-events: none; /* Desativa cliques */
+}
+
+.pagy.nav a[aria-disabled="true"] {
+  color: #bbb;
+  cursor: not-allowed;
+  pointer-events: none;
+  border: 2px solid #8080806b;
+  font-weight: bold;
+}
+
+.pagy.nav a[aria-label="Previous"],
+.pagy.nav a[aria-label="Next"] {
+  font-weight: bold; /* Negrito para botões anterior/próximo */
+}
+
+.pagy.nav .gap {
+  color: #666; /* Cor para o separador gap */
+  padding: 0 4px;
+}

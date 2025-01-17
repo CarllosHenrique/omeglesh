@@ -1,4 +1,6 @@
 class Room < ApplicationRecord
+  include Slugable
+
   belongs_to :user
   has_many :messages, dependent: :destroy
 

@@ -17,6 +17,8 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+gem "acts_as_list", "~> 1.0"
+gem 'friendly_id', '~> 5.5.0'
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
@@ -27,7 +29,7 @@ gem "solid_queue"
 gem "solid_cable"
 
 
-gem 'cloudinary'
+gem "cloudinary"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -42,6 +44,8 @@ gem "html2haml"
 gem "rails-i18n", "~> 8.0"
 gem "dotenv-rails"
 
+
+gem "pagy"
 
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
@@ -62,6 +66,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'annotate'
+
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 end

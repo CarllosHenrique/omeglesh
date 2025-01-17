@@ -2,4 +2,8 @@
   %button.flex.flex-row.items-center.hover:bg-gray-100.rounded-xl.p-2
     .flex.items-center.justify-center.h-8.w-8.bg-gray-200.rounded-full
       = user&.initials
-    .ml-2.text-sm.font-semibold= user&.name
+    .ml-2.text-sm.font-semibold{:style => "margin-right: 10px;"}= user&.name
+    - if user&.id == @room&.user&.id
+      %i.fa-solid.fa-crown
+    - else
+      %i.fa-solid.fa-user

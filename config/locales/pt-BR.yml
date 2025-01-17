@@ -18,6 +18,8 @@ pt-BR:
         success: "Hash gerado com sucesso!"
       destroy_hash:
         success: "Hash destruído com sucesso!"
+      errors:
+        not_found: "Sala não encontrada! ou Sala foi destruída."
     users:
       create:
         success: "Entrou com sucesso!"
@@ -56,6 +58,9 @@ pt-BR:
       created_at: "Criado em"
       visibility: "Visibilidade"
       actions: "Ações"
+      no_rooms: "Não há salas de bate-papo disponíveis. Crie uma nova!"
+      status: "Status"
+      image: "Imagem"
     new:
       title: "Criar uma nova sala de bate-papo"
       room_name: "Nome da sala"

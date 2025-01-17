@@ -2,22 +2,23 @@ class RoomPolicy < ApplicationPolicy
   def index?
     user_logged_in?
   end
+
+  def show?
+    if record.visibility == true && record.hash_code.present?
+      true
+    else
+      false
+    end
+
+    true
+  end
+
   def edit?
     room_belongs_to_user
   end
 
   def destroy?
     room_belongs_to_user
-  end
-
-  def show?
-    if record.visibility == true && record.hash_code.present?
-      unless room_belongs_to_user
-        return false
-      end
-    end
-
-    true
   end
 
   def update?
@@ -32,10 +33,9 @@ class RoomPolicy < ApplicationPolicy
     room_belongs_to_user
   end
 
-
   private
 
   def room_belongs_to_user
-    record.user.id == user.id
+    record.user_id == user.id
   end
 end

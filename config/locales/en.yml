@@ -18,6 +18,8 @@ en:
         success: "Hash generated successfully!"
       destroy_hash:
         success: "Hash destroyed successfully!"
+      errors:
+        not_found: "Room not found! or Room was been destroyed."
     users:
       create:
         success: "Logged in successfully!"
@@ -56,6 +58,9 @@ en:
       created_at: "Created at"
       visibility: "Visibility"
       actions: "Actions"
+      no_rooms: "There are no chat rooms available. Create a new one!"
+      status: "Status"
+      image: "Image"
     new:
       title: "Create a new chat room"
       room_name: "Room name"

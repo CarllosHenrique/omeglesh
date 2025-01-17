@@ -6,9 +6,8 @@
       .ml-2.font-bold.text-2xl= @room&.name
     .flex.flex-col.items-center.bg-indigo-100.border.border-gray-200.mt-4.w-full.py-6.px-4.rounded-lg
       .h-20.w-20.rounded-full.border.overflow-hidden
-        = image_tag(@room.logo, class: "h-full w-full") if @room&.logo.present?
-      .text-sm.font-semibold.mt-2= @room&.name
-      .text-xs.text-gray-500= @room&.hash_code
+        = image_tag(current_user&.avatar, class: "h-full w-full") if current_user&.avatar&.attached?
+      .text-sm.font-semibold.mt-2= current_user&.name
     .flex.flex-col.mt-8
       .flex.flex-row.items-center.justify-between.text-xs
         %span.font-bold= t("rooms.chat.sidebar.active_users")
@@ -24,6 +23,8 @@
       .flex.flex-row.items-center.justify-between.text-xs.mt-6
         %hr.w-48.h-1.mx-auto.my-4.bg-gray-100.border-0.rounded.md:my-10.dark:bg-gray-700/
       .flex.flex-col.space-y-1.mt-4.-mx-2
+        = link_to edit_room_path(@room), class: "py-2.5 text-center px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" do
+          = @room&.hash_code
         - if @room&.user&.id == current_user&.id
           = link_to edit_room_path(@room), class: "py-2.5 text-center px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" do
             %i.fa-solid.fa-gear

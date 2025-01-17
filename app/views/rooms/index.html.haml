@@ -9,9 +9,9 @@
     %table.w-full.text-sm.text-left.rtl:text-right.text-gray-500.dark:text-gray-400
       %thead.text-xs.text-gray-700.uppercase.bg-gray-50.dark:bg-gray-700.dark:text-gray-400
         %tr
-          %th.p-4{:scope => "col"}
-            .flex.items-center
-              %input#checkbox-all-search.w-4.h-4.text-blue-600.bg-gray-100.border-gray-300.rounded.focus:ring-blue-500.dark:focus:ring-blue-600.dark:ring-offset-gray-800.dark:focus:ring-offset-gray-800.focus:ring-2.dark:bg-gray-700.dark:border-gray-600{:type => "checkbox"}/
+          %th.px-6.py-3{:scope => "col"}
+            %i.fa-solid.fa-bars
+          %th.px-6.py-3{:scope => "col"}
           %th.px-6.py-3{:scope => "col"}
             %i.fa-solid.fa-door-open
             = t("rooms.index.name")
@@ -26,14 +26,16 @@
             = t("rooms.index.created_at")
           %th.px-6.py-3{:scope => "col"}
             %i.fa-solid.fa-eye
-            = t("rooms.index.visibility")
+            = t("rooms.index.status")
           %th.px-6.py-3{:scope => "col"}
             %i.fa-solid.fa-bars
             = t("rooms.index.actions")
       %tbody
         - if @rooms.any?
-          - @rooms&.each do |room|
+          - @rooms.each do |room|
             %tr.bg-white.border-b.dark:bg-gray-800.dark:border-gray-700.hover:bg-gray-50.dark:hover:bg-gray-600
+              %td.px-6.py-4
+                %i.fa-solid.fa-bars
               %td.w-4.p-4{:style => "padding: 19px;"}
                 .flex.items-center{:style => "width: 39px;"}
                   = image_tag(room.logo, class: "w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500") if room&.logo.present?
@@ -53,10 +55,14 @@
                 - else
                   %i.fa-solid.fa-lock
               %td.px-6.py-4
-                = link_to confirm_room_path(room), class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" do                                                                                       |
+                = link_to confirm_room_path(room), class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" do
                   %i.fa-solid.fa-arrow-right
                 - if room.user&.id == current_user&.id
-                  = link_to room_path(room), data: { turbo_method: :delete }, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-blue-800" do                                                                                                                  |
+                  = link_to room_path(room), data: { turbo_method:   :delete }, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-blue-800" do
                     %i.fa-solid.fa-trash
-                  = link_to edit_room_path(room), class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800" do                                                                                  |
+                  = link_to edit_room_path(room), class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800" do
                     %i.fa-solid.fa-pen-to-square
+        - else
+          .p-4.mb-4.text-sm.text-yellow-800.rounded-lg.bg-yellow-50.dark:bg-gray-800.dark:text-yellow-300{role: "alert"}
+            %span.font-medium= t("rooms.index.no_rooms")
+  = render "shared/pagination", pagy: @pagy, collection: @rooms
